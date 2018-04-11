@@ -23,7 +23,7 @@ class OriginSeriesBuilderTest {
      * Verifies that the computeSeries contains the sizes of every given origin.
      */
     @Test
-    void computeSeriesWithMaximumOrigins() {
+    void shouldComputeSeriesWithMaximumOrigins() {
         AnalysisResult analysisResult = mockAnalysisResultWithSizePerOrigin(8);
         List<Integer> series = new OriginSeriesBuilder().computeSeries(analysisResult);
         assertThat(series).containsExactly(0, 1, 2, 3, 4, 5, 6, 7);
@@ -33,7 +33,7 @@ class OriginSeriesBuilderTest {
      * Verifies that the computeSeries contains only the sizes of origins up to the maximum of origins.
      */
     @Test
-    void computeSeriesWithMoreThanMaximumOrigins() {
+    void shouldComputeSeriesWithMoreThanMaximumOrigins() {
         AnalysisResult analysisResult = mockAnalysisResultWithSizePerOrigin(9);
         List<Integer> series = new OriginSeriesBuilder().computeSeries(analysisResult);
         assertThat(series).containsExactly(0, 1, 2, 3, 4, 5, 6, 7);
@@ -44,7 +44,7 @@ class OriginSeriesBuilderTest {
      * Verifies that nested values of origin sizes are included.
      */
     @Test
-    void computeSeriesWithNestedOriginValues() {
+    void shouldComputeSeriesWithNestedOriginValues() {
         AnalysisResult analysisResult = mock(AnalysisResult.class);
         Map map = Maps.mutable.of("checkstyle", 15, "pmd", 20, "test0", 9);
         when(analysisResult.getSizePerOrigin()).thenReturn(map);
@@ -56,7 +56,7 @@ class OriginSeriesBuilderTest {
      * Verifies that an empty originmap results in an empty list.
      */
     @Test
-    void computeSeriesWithEmptySizePerOrigin() {
+    void shouldComputeSeriesWithEmptySizePerOrigin() {
         AnalysisResult analysisResult = mock(AnalysisResult.class);
         Map map = new HashMap();
         when(analysisResult.getSizePerOrigin()).thenReturn(map);
@@ -70,7 +70,7 @@ class OriginSeriesBuilderTest {
      * Should be changed.
      */
     @Test
-    void getRowId() {
+    void shouldThrowIndexOutOfBoundsException() {
         OriginSeriesBuilder originSeriesBuilder = new OriginSeriesBuilder();
         assertThrows(IndexOutOfBoundsException.class,
                 () -> {
